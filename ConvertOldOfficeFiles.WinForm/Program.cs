@@ -1,16 +1,17 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
-namespace ConvertOldOfficeFiles
+namespace ConvertOldOfficeFiles.WinForm
 {
     internal static class Program
     {
         /// <summary>
-        ///     The main entry point for the application.
+        ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main()
+        static void Main()
         {
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());

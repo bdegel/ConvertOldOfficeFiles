@@ -1,15 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace ConvertOldOfficeFiles
 {
-    internal class Converter: IDisposable
+    public class Converter: IDisposable
     {
         public int FileCount;
 
-        private readonly COMHandler _ch = new COMHandler();
+        private readonly COMHandler _ch = new();
 
         public string Output { get; set; }
 
@@ -139,7 +138,7 @@ namespace ConvertOldOfficeFiles
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //TODO:MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 // Cleanup
@@ -156,7 +155,7 @@ namespace ConvertOldOfficeFiles
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TODO:MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -197,7 +196,7 @@ namespace ConvertOldOfficeFiles
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //TODO:MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 // Cleanup
@@ -214,7 +213,7 @@ namespace ConvertOldOfficeFiles
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TODO:MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -240,7 +239,7 @@ namespace ConvertOldOfficeFiles
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //TODO:MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return bIsOldFormat;

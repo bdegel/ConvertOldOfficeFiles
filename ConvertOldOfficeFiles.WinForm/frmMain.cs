@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ConvertOldOfficeFiles
+namespace ConvertOldOfficeFiles.WinForm
 {
     public partial class FrmMain : Form
     {
-        private readonly Converter _co = new Converter();
+        private readonly Converter _co = new();
 
         public FrmMain()
         {
@@ -28,22 +28,20 @@ namespace ConvertOldOfficeFiles
 
         private void btConvert_Click(object sender, EventArgs e)
         {
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                _co.ConvertPath(dlg.SelectedPath, true);
-                Cursor.Current = Cursors.Default;
-            }
+            if (_dlg.ShowDialog() != DialogResult.OK) return;
+            
+            Cursor.Current = Cursors.WaitCursor;
+            _co.ConvertPath(_dlg.SelectedPath, true);
+            Cursor.Current = Cursors.Default;
         }
 
         private void btCheck_Click(object sender, EventArgs e)
         {
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                _co.ConvertPath(dlg.SelectedPath, false);
-                Cursor.Current = Cursors.Default;
-            }
+            if (_dlg.ShowDialog() != DialogResult.OK) return;
+            
+            Cursor.Current = Cursors.WaitCursor;
+            _co.ConvertPath(_dlg.SelectedPath, false);
+            Cursor.Current = Cursors.Default;
         }
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -51,7 +49,7 @@ namespace ConvertOldOfficeFiles
             _co?.Dispose();
         }
 
-        readonly FolderBrowserDialog dlg = new()
+        readonly FolderBrowserDialog _dlg = new()
         {
             AutoUpgradeEnabled = false,
             ShowNewFolderButton = false,

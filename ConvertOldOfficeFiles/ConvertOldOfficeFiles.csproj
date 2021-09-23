@@ -1,18 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows7.0</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <StartupObject>ConvertOldOfficeFiles.Program</StartupObject>
-    <PackageProjectUrl>https://github.com/bdegel/ConvertOldOfficeFiles</PackageProjectUrl>
-    <PackageIcon>Convert-File.ico</PackageIcon>
-    <PackageIconUrl />
-    <RepositoryUrl>https://github.com/bdegel/ConvertOldOfficeFiles</RepositoryUrl>
-    <PackageLicenseExpression>https://github.com/bdegel/ConvertOldOfficeFiles/blob/master/LICENSE</PackageLicenseExpression>
-    <Platforms>AnyCPU;x64</Platforms>
-    <ApplicationIcon>Convert-File.ico</ApplicationIcon>
+    <TargetFramework>net5.0</TargetFramework>
+    <Copyright>Copyright © 2021 Bernd Degel</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,13 +12,6 @@
     <PackageReference Include="NetOfficeFw.Core" Version="1.8.1" />
     <PackageReference Include="NetOfficeFw.Excel" Version="1.8.1" />
     <PackageReference Include="NetOfficeFw.Word" Version="1.8.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Convert-File.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

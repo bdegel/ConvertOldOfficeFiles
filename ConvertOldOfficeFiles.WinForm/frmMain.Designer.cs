@@ -1,5 +1,5 @@
 ﻿
-namespace ConvertOldOfficeFiles
+namespace ConvertOldOfficeFiles.WinForm
 {
     partial class FrmMain
     {
