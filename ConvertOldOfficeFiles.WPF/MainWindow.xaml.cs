@@ -26,7 +26,7 @@ namespace ConvertOldOfficeFiles.WPF
         public MainWindow()
         {
             InitializeComponent();
-            Title = Application.Current.MainWindow.GetType().Assembly.FullName + " Version " + Application.Current.MainWindow.GetType().Assembly.ImageRuntimeVersion;
+            Title = Application.Current.MainWindow.GetType().Assembly.GetName().Name + " Version " + System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
 
             _co.TextChanged += UpdateText;
             _co.StatusTextChanged += UpdateStatusText;
