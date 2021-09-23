@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/bdegel/ConvertOldOfficeFiles</RepositoryUrl>
     <PackageLicenseExpression>https://github.com/bdegel/ConvertOldOfficeFiles/blob/master/LICENSE</PackageLicenseExpression>
     <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>Convert-File.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
