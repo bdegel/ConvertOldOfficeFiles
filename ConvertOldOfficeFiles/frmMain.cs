@@ -22,12 +22,15 @@ namespace ConvertOldOfficeFiles
         }
 
         private void btConvert_Click(object sender, EventArgs e)
-        {   
-            tbOutput.Clear();
-            _co.ConvertPath(dlg.SelectedPath, true);
-            statusLabel.Text = "Ready";
-            Cursor.Current = Cursors.Default;
-            tbOutput.AppendText(_co.FileCount + " files converted" + Environment.NewLine);
+        {
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                tbOutput.Clear();
+                _co.ConvertPath(dlg.SelectedPath, true);
+                statusLabel.Text = "Ready";
+                Cursor.Current = Cursors.Default;
+                tbOutput.AppendText(_co.FileCount + " files converted" + Environment.NewLine);
+            }
         }
 
         private void btCheck_Click(object sender, EventArgs e)

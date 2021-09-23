@@ -34,8 +34,8 @@ namespace ConvertOldOfficeFiles
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btConvert = new System.Windows.Forms.ToolStripButton();
             this.btCheck = new System.Windows.Forms.ToolStripButton();
+            this.btConvert = new System.Windows.Forms.ToolStripButton();
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -79,17 +79,6 @@ namespace ConvertOldOfficeFiles
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btConvert
-            // 
-            this.btConvert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btConvert.Enabled = false;
-            this.btConvert.Image = ((System.Drawing.Image)(resources.GetObject("btConvert.Image")));
-            this.btConvert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btConvert.Name = "btConvert";
-            this.btConvert.Size = new System.Drawing.Size(53, 22);
-            this.btConvert.Text = "Convert";
-            this.btConvert.Click += new System.EventHandler(this.btConvert_Click);
-            // 
             // btCheck
             // 
             this.btCheck.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -99,6 +88,16 @@ namespace ConvertOldOfficeFiles
             this.btCheck.Size = new System.Drawing.Size(44, 22);
             this.btCheck.Text = "Check";
             this.btCheck.Click += new System.EventHandler(this.btCheck_Click);
+            // 
+            // btConvert
+            // 
+            this.btConvert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btConvert.Image = ((System.Drawing.Image)(resources.GetObject("btConvert.Image")));
+            this.btConvert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btConvert.Name = "btConvert";
+            this.btConvert.Size = new System.Drawing.Size(53, 22);
+            this.btConvert.Text = "Convert";
+            this.btConvert.Click += new System.EventHandler(this.btConvert_Click);
             // 
             // tbOutput
             // 
