@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConvertOldOfficeFiles
 {
-    internal class Converter
+    internal class Converter: IDisposable
     {
-        public static int FileCount;
-        public static string Output { get; set; }
+        public int FileCount;
 
-        public static void ConvertPath(string path, bool bConvert)
+        private readonly COMHandler _ch = new COMHandler();
+
+        public string Output { get; set; }
+
+        public void ConvertPath(string path, bool bConvert)
         {
             // Reset file count
             FileCount = 0;
@@ -24,7 +23,7 @@ namespace ConvertOldOfficeFiles
                 // Search for Excel files with an old office format and convert them into the new office OpenXML format
                 var fileNames = Directory.GetFiles(path, "*.xls");
                 //TODO:statusLabel.Text = path;
-                System.Windows.Forms.Application.DoEvents();
+                //System.Windows.Forms.Application.DoEvents();
                 Cursor.Current = Cursors.WaitCursor;
                 foreach (var fileName in fileNames)
                 {
@@ -88,14 +87,14 @@ namespace ConvertOldOfficeFiles
             {
             }
         }
-        private static void ConvertXls(string fileName)
+        private void ConvertXls(string fileName)
         {
             var saveFileName = fileName.Replace(".xls", ".xlsx");
 
             try
             {
                 // Load Excel worksheet
-                var wb = COMHandler.OpenExcelDocument(fileName);
+                var wb = _ch.OpenExcelDocument(fileName);
 
                 try
                 {
@@ -144,14 +143,14 @@ namespace ConvertOldOfficeFiles
             }
         }
 
-        private static void ConvertDoc(string fileName)
+        private void ConvertDoc(string fileName)
         {
             var saveFileName = fileName.Replace(".doc", ".docx");
 
             try
             {
                 // Load Word document
-                var doc = COMHandler.OpenWordDocument(fileName);
+                var doc = _ch.OpenWordDocument(fileName);
 
                 try
                 {
@@ -202,7 +201,7 @@ namespace ConvertOldOfficeFiles
             }
         }
 
-        private static bool IsOldOfficeFormat(string fileName)
+        private bool IsOldOfficeFormat(string fileName)
         {
             var bIsOldFormat = true;
             try
@@ -230,12 +229,17 @@ namespace ConvertOldOfficeFiles
             return bIsOldFormat;
         }
 
-        public static event EventHandler TextChanged;
+        public event EventHandler TextChanged;
 
         public virtual void OnTextChanged(EventArgs e)
         {
             var handler = TextChanged;
             handler?.Invoke(this, e);
+        }
+
+        public void Dispose()
+        {
+            _ch?.Dispose();
         }
     }
 }
