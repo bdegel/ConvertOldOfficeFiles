@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Convert-File.ico</ApplicationIcon>
+    <StartupObject>ConvertOldOfficeFiles.WinForm.Program</StartupObject>
+    <Description>Convert files with an old Excel and Word format (xls and doc) into new Office formats (xlsx, xlsm, docx, docm</Description>
+    <Copyright>Copyright © 2021 Bernd Degel</Copyright>
+    <PackageProjectUrl>https://github.com/bdegel/ConvertOldOfficeFiles/</PackageProjectUrl>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Convert-File.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConvertOldOfficeFiles\ConvertOldOfficeFiles.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
