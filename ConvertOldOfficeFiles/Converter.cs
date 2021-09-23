@@ -13,18 +13,19 @@ namespace ConvertOldOfficeFiles
 
         public string Output { get; set; }
 
+        public string StatusText { get; set; }
+
         public void ConvertPath(string path, bool bConvert)
         {
-            // Reset file count
+            // Reset file count and output
             FileCount = 0;
+            Output = "";
+            SetStatusTextRunning(true);
 
             try
             {
                 // Search for Excel files with an old office format and convert them into the new office OpenXML format
                 var fileNames = Directory.GetFiles(path, "*.xls");
-                //TODO:statusLabel.Text = path;
-                //System.Windows.Forms.Application.DoEvents();
-                Cursor.Current = Cursors.WaitCursor;
                 foreach (var fileName in fileNames)
                 {
                     var ext = Path.GetExtension(fileName);
@@ -35,7 +36,7 @@ namespace ConvertOldOfficeFiles
                         Output += "Error: the file " + fileName +
                                   " has a wrong format and therefore will not be converted !" +
                                   Environment.NewLine;
-                        TextChanged?.Invoke(new object(), EventArgs.Empty);
+                        TextChanged?.Invoke(this, EventArgs.Empty);
                         continue;
                     }
 
@@ -46,7 +47,7 @@ namespace ConvertOldOfficeFiles
                     else
                     {
                         Output += fileName + Environment.NewLine;
-                        TextChanged?.Invoke(new object(), EventArgs.Empty);
+                        TextChanged?.Invoke(this, EventArgs.Empty);
                         FileCount++;
                     }
                 }
@@ -62,7 +63,7 @@ namespace ConvertOldOfficeFiles
                             Output += "Error: the file " + fileName +
                                                 " has a wrong format and therefore will not be converted !" +
                                                 Environment.NewLine;
-                            TextChanged?.Invoke(new object(), EventArgs.Empty);
+                            TextChanged?.Invoke(this, EventArgs.Empty);
                             continue;
                         }
 
@@ -73,7 +74,7 @@ namespace ConvertOldOfficeFiles
                         else
                         {
                             Output += fileName + Environment.NewLine;
-                            TextChanged?.Invoke(new object(), EventArgs.Empty);
+                            TextChanged?.Invoke(this, EventArgs.Empty);
                             FileCount++;
                         }
                     }
@@ -82,18 +83,34 @@ namespace ConvertOldOfficeFiles
                 var dirs = Directory.GetDirectories(path);
                 foreach (var dir in dirs)
                     ConvertPath(dir, bConvert);
+
+                if (bConvert) Output += FileCount + "files converted.";
+                else Output += FileCount + " files found.";
+                TextChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
             }
+            finally
+            {
+                SetStatusTextRunning(false);
+            }
         }
+
+        private void SetStatusTextRunning(bool v)
+        {
+            if (v) StatusText = "Busy...";
+            else StatusText = "Ready";
+            StatusTextChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         private void ConvertXls(string fileName)
         {
             var saveFileName = fileName.Replace(".xls", ".xlsx");
 
             try
             {
-                // Load Excel worksheet
+                // Load Excel workbook
                 var wb = _ch.OpenExcelDocument(fileName);
 
                 try
@@ -106,14 +123,14 @@ namespace ConvertOldOfficeFiles
                     {
                         saveFileName = fileName.Replace(".xls", ".xlsm");
                         Output += "Convert " + fileName + " to " + saveFileName + Environment.NewLine;
-                        TextChanged?.Invoke(new object(), EventArgs.Empty);
+                        TextChanged?.Invoke(this, EventArgs.Empty);
                         // Save in OpenXML format with macros (see https://docs.microsoft.com/de-de/office/vba/api/excel.xlfileformat)
                         wb.SaveAs(saveFileName, 52);
                     }
                     else
                     {
                         Output += "Convert " + fileName + " to " + saveFileName + Environment.NewLine;
-                        TextChanged?.Invoke(new object(), EventArgs.Empty);
+                        TextChanged?.Invoke(this, EventArgs.Empty);
                         // Save in OpenXML format without macros  (see https://docs.microsoft.com/de-de/office/vba/api/excel.xlfileformat)
                         wb.SaveAs(saveFileName, 51);
                     }
@@ -164,14 +181,14 @@ namespace ConvertOldOfficeFiles
                     {
                         saveFileName = fileName.Replace(".doc", ".docm");
                         Output += "Convert " + fileName + " to " + saveFileName + Environment.NewLine;
-                        TextChanged?.Invoke(new object(), EventArgs.Empty);
+                        TextChanged?.Invoke(this, EventArgs.Empty);
                         // Save in OpenXML format with macros (see https://docs.microsoft.com/de-de/office/vba/api/word.wdsaveformat)
                         doc.SaveAs2(saveFileName, 13);
                     }
                     else
                     {
                         Output += "Convert " + fileName + " to " + saveFileName + Environment.NewLine;
-                        TextChanged?.Invoke(new object(), EventArgs.Empty);
+                        TextChanged?.Invoke(this, EventArgs.Empty);
                         // Save in OpenXML format without macros (see https://docs.microsoft.com/de-de/office/vba/api/word.wdsaveformat)
                         doc.SaveAs2(saveFileName, 16);
                     }
@@ -234,6 +251,14 @@ namespace ConvertOldOfficeFiles
         public virtual void OnTextChanged(EventArgs e)
         {
             var handler = TextChanged;
+            handler?.Invoke(this, e);
+        }
+
+        public event EventHandler StatusTextChanged;
+
+        public virtual void OnStatusTextChanged(EventArgs e)
+        {
+            var handler = StatusTextChanged;
             handler?.Invoke(this, e);
         }
 

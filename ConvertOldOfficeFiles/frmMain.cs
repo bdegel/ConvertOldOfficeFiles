@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace ConvertOldOfficeFiles
@@ -14,6 +13,7 @@ namespace ConvertOldOfficeFiles
             Text = Application.ProductName + " Version " + Application.ProductVersion;
 
             _co.TextChanged += UpdateText;
+            _co.StatusTextChanged += UpdateStatusText;
         }
 
         private void UpdateText(object? sender, EventArgs e)
@@ -21,15 +21,18 @@ namespace ConvertOldOfficeFiles
             tbOutput.Text = _co.Output;
         }
 
+        private void UpdateStatusText(object? sender, EventArgs e)
+        {
+            statusLabel.Text = _co.StatusText;
+        }
+
         private void btConvert_Click(object sender, EventArgs e)
         {
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                tbOutput.Clear();
+                Cursor.Current = Cursors.WaitCursor;
                 _co.ConvertPath(dlg.SelectedPath, true);
-                statusLabel.Text = "Ready";
                 Cursor.Current = Cursors.Default;
-                tbOutput.AppendText(_co.FileCount + " files converted" + Environment.NewLine);
             }
         }
 
@@ -37,13 +40,9 @@ namespace ConvertOldOfficeFiles
         {
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                tbOutput.Clear();
+                Cursor.Current = Cursors.WaitCursor;
                 _co.ConvertPath(dlg.SelectedPath, false);
-                statusLabel.Text = "Ready";
                 Cursor.Current = Cursors.Default;
-                tbOutput.AppendText(_co.FileCount + " files found" + Environment.NewLine);
-
-                btConvert.Enabled = true;
             }
         }
 
