@@ -15,11 +15,13 @@ The tool let you scan a given directory and all its subdirectories for files lik
 I hope this tiny tool will be useful for anybody else in a similar situation.
 
 ## Prerequisites
-For this to work you will have to enable access to the VBA project model in the MS Office Trust Center:
+For this to work you will have to enable access to the VBA project model in the MS Office Trust Center.
 Open any MS Office application and navigate to the following option page:
-File > Options > Trust Center > Trust Center Settings...
-Enable "Trust Access to the VBA project object model" option.
+
+*File* > *Options* > *Trust Center* > *Trust Center Settings...*
+
+Enable the *Trust Access to the VBA project object model* option.
 
 ![Office Settings](https://github.com/bdegel/ConvertOldOfficeFiles/blob/master/ProjectFiles/TrustCenter.png)
 
-Remember to disable this option again after running the tool, as this introduces possible security risks.
+**Remember to disable this option again after running the tool, as this introduces possible security risks!**
