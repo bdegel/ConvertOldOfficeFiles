@@ -19,6 +19,9 @@
     <PackageReference Include="NetOffice.Core" Version="1.7.4.11" />
     <PackageReference Include="NetOffice.Excel" Version="1.7.4.11" />
     <PackageReference Include="NetOffice.Word" Version="1.7.4.11" />
+    <PackageReference Include="NetOfficeFw.Core" Version="1.8.1" />
+    <PackageReference Include="NetOfficeFw.Excel" Version="1.8.1" />
+    <PackageReference Include="NetOfficeFw.Word" Version="1.8.1" />
   </ItemGroup>
 
   <ItemGroup>
