@@ -10,18 +10,15 @@ namespace ConvertOldOfficeFiles
         public FrmMain()
         {
             InitializeComponent();
-            
-            Converter.TextChanged += UpdateText;
+            Text = Application.ProductName + " Version " + Application.ProductVersion;
 
+            Converter.TextChanged += UpdateText;
         }
 
         private void UpdateText(object? sender, EventArgs e)
         {
             tbOutput.Text = Converter.Output;
         }
-
-        public sealed override string Text { get; set; } =
-            Application.ProductName + " Version " + Application.ProductVersion;
 
         private void btConvert_Click(object sender, EventArgs e)
         {
