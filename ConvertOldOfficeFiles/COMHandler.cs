@@ -5,24 +5,17 @@ namespace ConvertOldOfficeFiles
 {
     class COMHandler: IDisposable
     {
-        public COMHandler()
+        private static NetOffice.ExcelApi.Application ExcelApplication { get; set; } = new NetOffice.ExcelApi.Application
         {
-            ExcelApplication = new NetOffice.ExcelApi.Application
-            {
-                Visible = false,
-                DisplayAlerts = false
-            };
+            Visible = false,
+            DisplayAlerts = false
+        };
 
-            WordApplication = new NetOffice.WordApi.Application
-            {
-                Visible = false,
-                DisplayAlerts = WdAlertLevel.wdAlertsNone
-            };
-        }
-
-        private NetOffice.ExcelApi.Application ExcelApplication { get; set; }
-
-        private NetOffice.WordApi.Application WordApplication { get; set; }
+        private static NetOffice.WordApi.Application WordApplication { get; set; } = new NetOffice.WordApi.Application
+        {
+            Visible = false,
+            DisplayAlerts = WdAlertLevel.wdAlertsNone
+        };
 
         /// <summary>
         /// Disposes all COM objects instantiated by this class

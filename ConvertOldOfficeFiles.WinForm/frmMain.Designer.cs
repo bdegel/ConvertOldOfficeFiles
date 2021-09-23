@@ -47,10 +47,10 @@ namespace ConvertOldOfficeFiles.WinForm
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
             this.progressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 429);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 389);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 12, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1082, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -75,7 +75,7 @@ namespace ConvertOldOfficeFiles.WinForm
             this.btConvert});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1082, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(784, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -108,14 +108,14 @@ namespace ConvertOldOfficeFiles.WinForm
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.ReadOnly = true;
             this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbOutput.Size = new System.Drawing.Size(1082, 404);
+            this.tbOutput.Size = new System.Drawing.Size(784, 364);
             this.tbOutput.TabIndex = 4;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 451);
+            this.ClientSize = new System.Drawing.Size(784, 411);
             this.Controls.Add(this.tbOutput);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);

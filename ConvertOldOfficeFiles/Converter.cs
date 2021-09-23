@@ -83,8 +83,8 @@ namespace ConvertOldOfficeFiles
                 foreach (var dir in dirs)
                     ConvertPath(dir, bConvert);
 
-                if (bConvert) Output += FileCount + "files converted.";
-                else Output += FileCount + " files found.";
+                if (bConvert) Output += FileCount + " file(s) converted.";
+                else Output += FileCount + " file(s) found.";
                 TextChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
@@ -98,8 +98,7 @@ namespace ConvertOldOfficeFiles
 
         private void SetStatusTextRunning(bool v)
         {
-            if (v) StatusText = "Busy...";
-            else StatusText = "Ready";
+            StatusText = v ? "Busy..." : "Ready";
             StatusTextChanged?.Invoke(this, EventArgs.Empty);
         }
 
